@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 
+
 class File(object):
 
     def __init__(self, fname):
@@ -66,12 +67,13 @@ def load_with_cosmic_applied(filename):
     arr = np.average(arr, axis=1)
     return arr
 
+
 class SpectraBase:
 
     def __init__(self, dbase_name):
         self.df = self.load(dbase_name)
         self.db_name = dbase_name
-    
+
     def load(self, dbase_name):
 
         try:
@@ -79,34 +81,31 @@ class SpectraBase:
             print('{} loaded'.format(dbase_name))
         except:
             print('{} created'.format(dbase_name))
-            expdict = { x+1:[] for x in range(2048) }
-            expdict['eID'] = []
+            expdict = {x + 1: [] for x in range(2048)}
             expdict['FolderName'] = []
             expdict['FileName'] = []
             expdict['Element'] = []
             expdict['Energy'] = []
             expdict['Current'] = []
-            expdict['CollectionTime'] = []
-            expdict['Frames'] = []
-            expdict['CookTime'] = []
             expdict['Date'] = []
+            expdict['Note'] = []
             expdict['Calibration1'] = []
             expdict['Calibration2'] = []
             expdict['Calibration3'] = []
             expdict['Calibration4'] = []
             df = pd.DataFrame(expdict)
-            
+
         return df
 
     def save(self, dbase_name):
 
         self.df.to_csv(dbase_name)
-        
-    def addRow(self, spec, eid=np.nan, foname=np.nan, finame=np.nan, element=np.nan,\
-            energy=np.nan, current=np.nan, collectiontime=np.nan, frames=np.nan,\
-            cooktime=np.nan, date=np.nan, calibration1=np.nan, calibration2=np.nan,\
-            calibration3=np.nan, calibration4=np.nan):
-    # Function to add spectrum to DataFrame
-        row = np.append(spec, [eid, foname, finame, element, energy, current, collectiontime, frames, cooktime,\
-                           date, calibration1, calibration2, calibration3, calibration4])
+
+    def addRow(self, spec, foname=np.nan, finame=np.nan, element=np.nan,
+               energy=np.nan, current=np.nan,
+               date=np.nan, note=np.nan, calibration1=np.nan, calibration2=np.nan,
+               calibration3=np.nan, calibration4=np.nan):
+        # Function to add spectrum to DataFrame
+        row = np.append(spec, [foname, finame, element, energy, current,
+                               date, note, calibration1, calibration2, calibration3, calibration4])
         self.df.loc[len(self.df)] = row
