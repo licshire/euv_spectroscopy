@@ -12,3 +12,5 @@ After this is finished we will have a single file containing all the spectra wit
 ### Functionality for the dataframe
 Write class which loads up our dataframe containing all the experimental and theoretical data.
 Functions that can filter data, return individual spectrums, etc..
+
+*(2018/06/29):* Original plan was to load experimental and theoretical data into a single dataframe, for now we will keep them seperate
