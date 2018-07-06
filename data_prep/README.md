@@ -14,3 +14,4 @@ Write class which loads up our dataframe containing all the experimental and the
 Functions that can filter data, return individual spectrums, etc..
 
 *(2018/06/29):* Original plan was to load experimental and theoretical data into a single dataframe, for now we will keep them seperate
+*(2018/07/06):* Finished merging of theoretical dataset into a single .csv
