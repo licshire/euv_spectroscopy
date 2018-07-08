@@ -1,23 +1,12 @@
-## Extreme Ultraviolet Spectroscopy
+# Extreme Ultraviolet Spectroscopy
 
-### Loading and accessing dataframe
+## Data preperation
+Theoretical and Experimental data both came in different formats and different experimental measurements also came in different formats. Organize data into a usable format.
 
-Loading up organized data
+Finished up on this data is now in 2 .csv files which are easily usable with pandas.
 
-```
-from spec_db import *
+## Experimental data calibration
+Every spectrum in our experimental data is of length (1,2048). One intensity value for each channel. We have to find a function that converts our channel numbers to wavelengths.
 
-# Load up data
-data = SpecBase('specBase.csv')
-
-data.df # returns data in a DataFrame
-
-# Filter dataframe
-filtered = data.getTable(max_energy=5000,min_energy=1000,max_current=160,min_current=0,element=[26, 54], fstring='EUV')
-```
-
-Although this may help loading it up like this:
-```
-data = df.read_csv('specBase.csv', delimiter=',')
-```
-Might be more convenient.
+## Theoretical data merge
+Unlike in our experimetal data our theoretical data has charge states seperated. We have to merge these seperate charge states together. Also each wavelength responds to one intensity, we have to distribute this intensity around that wavelength.
